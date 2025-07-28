@@ -1,0 +1,75 @@
+.footer {
+  @apply bg-gradient-to-br from-black via-gray-900 to-black text-white border-t border-yellow-400/20;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-6 py-16;
+}
+
+.gridLayout {
+  @apply grid md:grid-cols-2 lg:grid-cols-5 gap-12;
+}
+
+.companySection {
+  @apply lg:col-span-2 space-y-6;
+}
+
+.description {
+  @apply text-white/70 text-sm leading-relaxed;
+}
+
+.socialLinks {
+  @apply flex space-x-4;
+}
+
+.socialLink {
+  @apply w-10 h-10 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 border border-yellow-400/30 rounded-xl flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-black transition-all duration-300 hover:scale-110;
+}
+
+.section {
+  @apply space-y-4;
+}
+
+.sectionTitle {
+  @apply font-bold text-lg text-white mb-6 relative;
+}
+
+.sectionTitle::after {
+  @apply absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-500 content-[''];
+}
+
+.linkList {
+  @apply space-y-3;
+}
+
+.link {
+  @apply block text-white/70 hover:text-yellow-400 transition-colors text-sm hover:translate-x-1 transform duration-200;
+}
+
+.contactInfo {
+  @apply space-y-4;
+}
+
+.contactItem {
+  @apply flex items-start space-x-3 text-sm text-white/70;
+}
+
+.bottom {
+  @apply border-t border-white/10 mt-12 pt-8;
+}
+
+.bottomContent {
+  @apply flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0;
+}
+
+.copyright {
+  @apply text-white/60 text-sm;
+}
+
+.bottomLinks {
+  @apply flex space-x-6;
+}
+
+.bottomLink {
+  @apply text-white/60 hover:text-yellow-400 text-sm transition-colors;
+}
