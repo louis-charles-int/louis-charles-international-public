@@ -22,19 +22,9 @@ A modern, professional website for Louis Charles International, a UAE-based busi
 - **Customer Communication**: Email management and customer service
 - **Process Optimization**: Efficiency improvements and cost reduction
 
-## 🌐 Website Features
 
-### Professional Design
-- **Modern UI/UX**: Clean, professional design that builds trust
-- **Responsive Layout**: Optimized for all devices and screen sizes
-- **Fast Performance**: Quick loading times and smooth user experience
-- **SEO Optimized**: Built for search engine visibility and ranking
 
-### Interactive Elements
-- **Smart Chatbot**: AI-powered customer support with intelligent responses
-- **Contact Forms**: Easy-to-use partnership inquiry system
-- **Smooth Animations**: Professional transitions and user interactions
-- **Mobile-First**: Perfect experience on smartphones and tablets
+
 
 ### Business Focus
 - **Service Showcase**: Clear presentation of our core offerings
@@ -42,13 +32,7 @@ A modern, professional website for Louis Charles International, a UAE-based busi
 - **Contact Integration**: Seamless communication with our team
 - **Professional Branding**: Consistent with our business identity
 
-## 🚀 Technology
 
-Built with modern web technologies to ensure:
-- **Performance**: Fast loading and smooth interactions
-- **Security**: Secure data handling and user privacy
-- **Scalability**: Ready to grow with your business needs
-- **Maintainability**: Easy updates and improvements
 
 ## 📍 About Louis Charles International
 
@@ -64,7 +48,7 @@ Built with modern web technologies to ensure:
 - **Address**: Grandstand Building (6th Floor), Al Meydan Road, Nad Al Sheba 1, Dubai, UAE
 
 ### Business Hours
-- **Monday - Friday**: 9:00 AM - 6:00 PM (Dubai Time)
+- **Monday - Friday**: 12:00 PM - 8:00 PM (Dubai Time)
 - **Weekend**: Available for urgent inquiries
 - **Global Support**: 24/7 availability for international clients
 
