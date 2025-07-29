@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Your Business Growth Partner",
   description:
     "Professional business solutions including marketing, AI automation, and admin support to help your business thrive",
-  url: "https://louischarles.com",
+  url: "https://louis-charles.com",
   links: {
     email: "info@louis-charles.com",
     phone: "+971 55 262 1669",
