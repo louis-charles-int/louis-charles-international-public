@@ -417,7 +417,7 @@ export default function PartnershipPage() {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 text-xs sm:text-sm md:text-base lg:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
@@ -426,8 +426,10 @@ export default function PartnershipPage() {
                     </>
                   ) : (
                     <>
-                      Start Partnership Discussion
-                      <Icon name="ArrowRight" className="ml-2" size={20} />
+                      <span className="whitespace-nowrap">
+                        Start Partnership Discussion
+                      </span>
+                      <Icon name="ArrowRight" className="ml-2 flex-shrink-0" size={16} />
                     </>
                   )}
                 </Button>

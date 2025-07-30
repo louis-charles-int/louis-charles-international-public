@@ -80,41 +80,41 @@ export async function sendPartnershipEmail(formData: FormData) {
         <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
           🤝 New Partnership Inquiry
         </h2>
-        
+          
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #007bff; margin-top: 0;">Contact Information</h3>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Company:</strong> ${company}</p>
           <p><strong>Phone:</strong> ${formData.phone}</p>
-        </div>
-        
+          </div>
+
         <div style="background-color: #fff; padding: 20px; border: 1px solid #dee2e6; border-radius: 8px; margin: 20px 0;">
           <h3 style="color: #333; margin-top: 0;">Project Details</h3>
           <p><strong>Industry:</strong> ${formData.industry}</p>
           <p><strong>Service Interest:</strong> ${
-            formData.projectType === "marketing-solutions"
-              ? "Marketing Solutions"
-              : formData.projectType === "ai-automation"
-                ? "AI Automation"
-                : formData.projectType === "admin-support"
-                  ? "Admin Support"
-                  : formData.projectType === "all-business-services"
-                    ? "All Business Services"
-                    : formData.projectType
+                    formData.projectType === "marketing-solutions"
+                      ? "Marketing Solutions"
+                      : formData.projectType === "ai-automation"
+                        ? "AI Automation"
+                        : formData.projectType === "admin-support"
+                          ? "Admin Support"
+                          : formData.projectType === "all-business-services"
+                            ? "All Business Services"
+                            : formData.projectType
           }</p>
-        </div>
-        
+          </div>
+
         <div style="background-color: #fff; padding: 20px; border: 1px solid #dee2e6; border-radius: 8px;">
           <h3 style="color: #333; margin-top: 0;">Message</h3>
           <p style="line-height: 1.6; color: #555;">${message}</p>
-        </div>
-        
+          </div>
+
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; font-size: 12px; color: #666;">
           <p>This inquiry was submitted through the Louis Charles International website.</p>
           <p>To respond, please reply to this email or contact: ${email}</p>
         </div>
-      </div>
+          </div>
     `
 
     // Send email
