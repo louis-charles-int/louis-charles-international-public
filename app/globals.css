@@ -240,28 +240,8 @@
   }
 }
 
-/* Mobile dropdown improvements */
+/* Mobile form improvements */
 @media (max-width: 768px) {
-  /* Ensure dropdown content is properly positioned on mobile */
-  [data-radix-popper-content-wrapper] {
-    z-index: 9999 !important;
-  }
-  
-  /* Improve dropdown visibility on small screens */
-  [data-radix-select-content] {
-    max-height: 250px !important;
-    background-color: rgb(31 41 55) !important;
-    border: 1px solid rgb(75 85 99) !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
-  }
-  
-  /* Ensure dropdown items are properly styled on mobile */
-  [data-radix-select-item] {
-    padding: 1rem 1.25rem !important;
-    color: white !important;
-    min-height: 44px !important;
-  }
-  
   /* Improve form field spacing on mobile */
   .space-y-6 > * + * {
     margin-top: 1.5rem !important;
@@ -272,4 +252,46 @@
     margin-top: 0.5rem !important;
     font-size: 0.875rem !important;
   }
+}
+
+/* Override Radix Select default behavior to prevent page scrollbar */
+[data-radix-select-content] {
+  background-color: rgb(31 41 55) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  overflow: visible !important;
+  min-width: auto !important;
+  max-width: 100% !important;
+  width: auto !important;
+}
+
+/* Prevent dropdown from causing page horizontal scroll */
+[data-radix-popper-content-wrapper] {
+  max-width: 100% !important;
+  width: auto !important;
+}
+
+/* Force dropdown to stay within viewport */
+[data-radix-select-content] {
+  background-color: rgb(31 41 55) !important;
+  border: 1px solid rgb(75 85 99) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: calc(100vw - 2rem) !important;
+  width: auto !important;
+}
+
+/* Aggressively prevent page overflow */
+html:has([data-radix-popper-content-wrapper]),
+body:has([data-radix-popper-content-wrapper]) {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
 }

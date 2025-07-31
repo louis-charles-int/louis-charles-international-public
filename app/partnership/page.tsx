@@ -194,7 +194,7 @@ export default function PartnershipPage() {
           message:
             "Thank you! Your partnership inquiry has been sent successfully. We'll get back to you within 24 hours.",
         })
-        // Reset form
+        // Reset form to clear all fields
         form.reset()
       } else {
         setSubmitStatus({
@@ -339,25 +339,25 @@ export default function PartnershipPage() {
                         </FormItem>
                       )}
                     />
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white/80">Email Address *</FormLabel>
-                          <FormControl>
-                            <Input
-                              {...field}
-                              type="email"
-                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
-                              placeholder="your@email.com"
-                              disabled={isSubmitting}
-                            />
-                          </FormControl>
-                          <FormMessage className="text-red-400" />
-                        </FormItem>
-                      )}
-                    />
+                                         <FormField
+                       control={form.control}
+                       name="email"
+                       render={({ field }) => (
+                         <FormItem>
+                           <FormLabel className="text-white/80">Email Address *</FormLabel>
+                           <FormControl>
+                             <Input
+                               {...field}
+                               type="text"
+                               className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                               placeholder="your@email.com"
+                               disabled={isSubmitting}
+                             />
+                           </FormControl>
+                           <FormMessage className="text-red-400" />
+                         </FormItem>
+                       )}
+                     />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -401,13 +401,13 @@ export default function PartnershipPage() {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="industry"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white/80">Industry *</FormLabel>
-                                                     <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isSubmitting}>
+                                         <FormField
+                       control={form.control}
+                       name="industry"
+                       render={({ field }) => (
+                         <FormItem>
+                           <FormLabel className="text-white/80">Industry *</FormLabel>
+                           <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
                              <FormControl>
                                <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
                                  <SelectValue placeholder="Select your industry" />
@@ -422,17 +422,17 @@ export default function PartnershipPage() {
                                <SelectItem value="other">Other</SelectItem>
                              </SelectContent>
                            </Select>
-                          <FormMessage className="text-red-400" />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="projectType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white/80">Service Interest *</FormLabel>
-                                                     <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isSubmitting}>
+                           <FormMessage className="text-red-400" />
+                         </FormItem>
+                       )}
+                     />
+                                         <FormField
+                       control={form.control}
+                       name="projectType"
+                       render={({ field }) => (
+                         <FormItem>
+                           <FormLabel className="text-white/80">Service Interest *</FormLabel>
+                           <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
                              <FormControl>
                                <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
                                  <SelectValue placeholder="Select service type" />
@@ -445,10 +445,10 @@ export default function PartnershipPage() {
                                <SelectItem value="all-business-services">All business services</SelectItem>
                              </SelectContent>
                            </Select>
-                          <FormMessage className="text-red-400" />
-                        </FormItem>
-                      )}
-                    />
+                           <FormMessage className="text-red-400" />
+                         </FormItem>
+                       )}
+                     />
                   </div>
 
                   <FormField
