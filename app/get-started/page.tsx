@@ -287,7 +287,7 @@ export default function GetStartedPage() {
               size="lg"
               className="border-2 border-black text-black hover:bg-black hover:text-white px-8 sm:px-12 py-3 sm:py-4 text-base sm:text-lg rounded-full transition-all duration-300 bg-transparent"
             >
-              <Link href="/expertise">Explore All Services</Link>
+              <Link href="/services">Explore All Services</Link>
             </Button>
           </div>
         </div>

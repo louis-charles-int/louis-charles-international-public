@@ -13,16 +13,16 @@ export function Footer() {
       links: [
         { href: "/vision", label: "Our Vision" },
         { href: "/get-started", label: "Get Started" },
-        { href: "/expertise", label: "Our Services" },
+        { href: "/services", label: "Our Services" },
         { href: "/partnership", label: "Partnership" },
       ],
     },
     {
       title: "Services",
       links: [
-        { href: "/expertise#marketing-solutions", label: "Marketing Solutions" },
-        { href: "/expertise#ai-automation", label: "AI Automation" },
-        { href: "/expertise#admin-support", label: "Admin Support" },
+        { href: "/services#marketing-solutions", label: "Marketing Solutions" },
+        { href: "/services#ai-automation", label: "AI Automation" },
+        { href: "/services#admin-support", label: "Admin Support" },
         { href: "/partnership#form", label: "Custom Solutions" },
       ],
     },

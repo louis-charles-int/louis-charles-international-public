@@ -3,13 +3,44 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import * as z from "zod"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Icon } from "@/components/ui/icon"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
 import { sendPartnershipEmail } from "@/lib/actions/send-email"
+
+// Form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  company: z.string().min(2, "Company name must be at least 2 characters"),
+  phone: z.string().min(1, "Phone number is required"),
+  industry: z.string().min(1, "Please select an industry"),
+  projectType: z.string().min(1, "Please select a service type"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+})
+
+type FormData = z.infer<typeof formSchema>
 
 export default function PartnershipPage() {
   const [isVisible, setIsVisible] = useState(false)
@@ -18,14 +49,18 @@ export default function PartnershipPage() {
     type: null,
     message: "",
   })
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    industry: "",
-    projectType: "",
-    message: "",
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      industry: "",
+      projectType: "",
+      message: "",
+    },
   })
 
   useEffect(() => {
@@ -135,20 +170,23 @@ export default function PartnershipPage() {
     },
   ]
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: "" })
 
     try {
-      const result = await sendPartnershipEmail(formData)
+      // Ensure we only pass serializable data
+      const cleanData = {
+        name: String(data.name || ""),
+        email: String(data.email || ""),
+        company: String(data.company || ""),
+        phone: String(data.phone || ""),
+        industry: String(data.industry || ""),
+        projectType: String(data.projectType || ""),
+        message: String(data.message || ""),
+      }
+      
+      const result = await sendPartnershipEmail(cleanData)
 
       if (result.success) {
         setSubmitStatus({
@@ -157,15 +195,7 @@ export default function PartnershipPage() {
             "Thank you! Your partnership inquiry has been sent successfully. We'll get back to you within 24 hours.",
         })
         // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          phone: "",
-          industry: "",
-          projectType: "",
-          message: "",
-        })
+        form.reset()
       } else {
         setSubmitStatus({
           type: "error",
@@ -288,152 +318,197 @@ export default function PartnershipPage() {
 
           <Card className="bg-gradient-to-br from-gray-900 to-black border-amber-400/30">
             <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Full Name *</label>
-                    <Input
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
                       name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="bg-gray-800 border-gray-600 text-white"
-                      placeholder="Your full name"
-                      disabled={isSubmitting}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Full Name *</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              placeholder="Your full name"
+                              disabled={isSubmitting}
+                            />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
                     />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Email Address *</label>
-                    <Input
+                    <FormField
+                      control={form.control}
                       name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="bg-gray-800 border-gray-600 text-white"
-                      placeholder="your@email.com"
-                      disabled={isSubmitting}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Email Address *</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="email"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              placeholder="your@email.com"
+                              disabled={isSubmitting}
+                            />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
                     />
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Company Name *</label>
-                    <Input
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
                       name="company"
-                      required
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="bg-gray-800 border-gray-600 text-white"
-                      placeholder="Your company name"
-                      disabled={isSubmitting}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Company Name *</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              placeholder="Your company name"
+                              disabled={isSubmitting}
+                            />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
                     />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Phone Number</label>
-                    <Input
+                    <FormField
+                      control={form.control}
                       name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="bg-gray-800 border-gray-600 text-white"
-                      placeholder="+1 (555) 123-4567"
-                      disabled={isSubmitting}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Phone Number *</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="tel"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              placeholder="+1 (555) 123-4567"
+                              disabled={isSubmitting}
+                            />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
                     />
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Industry *</label>
-                    <select
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
                       name="industry"
-                      required
-                      value={formData.industry}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white rounded-md"
-                      disabled={isSubmitting}
-                    >
-                      <option value="">Select your industry</option>
-                      <option value="technology">Technology</option>
-                      <option value="healthcare">Healthcare</option>
-                      <option value="finance">Finance</option>
-                      <option value="retail">Retail</option>
-                      <option value="manufacturing">Manufacturing</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white/80 mb-2">Service Interest *</label>
-                    <select
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Industry *</FormLabel>
+                                                     <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isSubmitting}>
+                             <FormControl>
+                               <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
+                                 <SelectValue placeholder="Select your industry" />
+                               </SelectTrigger>
+                             </FormControl>
+                             <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
+                               <SelectItem value="technology">Technology</SelectItem>
+                               <SelectItem value="healthcare">Healthcare</SelectItem>
+                               <SelectItem value="finance">Finance</SelectItem>
+                               <SelectItem value="retail">Retail</SelectItem>
+                               <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                               <SelectItem value="other">Other</SelectItem>
+                             </SelectContent>
+                           </Select>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
                       name="projectType"
-                      required
-                      value={formData.projectType}
-                      onChange={handleInputChange}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 text-white rounded-md"
-                      disabled={isSubmitting}
-                    >
-                      <option value="">Select service type</option>
-                      <option value="marketing-solutions">Marketing Solutions</option>
-                      <option value="ai-automation">AI Automation</option>
-                      <option value="admin-support">Admin Support</option>
-                      <option value="all-business-services">All business services</option>
-                    </select>
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Service Interest *</FormLabel>
+                                                     <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isSubmitting}>
+                             <FormControl>
+                               <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
+                                 <SelectValue placeholder="Select service type" />
+                               </SelectTrigger>
+                             </FormControl>
+                             <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
+                               <SelectItem value="marketing-solutions">Marketing Solutions</SelectItem>
+                               <SelectItem value="ai-automation">AI Automation</SelectItem>
+                               <SelectItem value="admin-support">Admin Support</SelectItem>
+                               <SelectItem value="all-business-services">All business services</SelectItem>
+                             </SelectContent>
+                           </Select>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">Project Details *</label>
-                  <Textarea
+                  <FormField
+                    control={form.control}
                     name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={6}
-                    className="bg-gray-800 border-gray-600 text-white"
-                    placeholder="Tell us about your project, goals, and how we can help you achieve them..."
-                    disabled={isSubmitting}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-white/80">Project Details *</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            rows={6}
+                            className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                            placeholder="Tell us about your project, goals, and how we can help you achieve them..."
+                            disabled={isSubmitting}
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                {/* Status Messages */}
-                {submitStatus.type && (
-                  <div
-                    className={`p-4 rounded-lg ${
-                      submitStatus.type === "success"
-                        ? "bg-green-500/10 border border-green-500/30 text-green-400"
-                        : "bg-red-500/10 border border-red-500/30 text-red-400"
-                    }`}
-                  >
-                    <div className="flex items-center">
-                      <Icon name={submitStatus.type === "success" ? "CheckCircle" : "X"} className="mr-2" size={20} />
-                      {submitStatus.message}
+                  {/* Status Messages */}
+                  {submitStatus.type && (
+                    <div
+                      className={`p-4 rounded-lg ${
+                        submitStatus.type === "success"
+                          ? "bg-green-500/10 border border-green-500/30 text-green-400"
+                          : "bg-red-500/10 border border-red-500/30 text-red-400"
+                      }`}
+                    >
+                      <div className="flex items-center">
+                        <Icon name={submitStatus.type === "success" ? "CheckCircle" : "X"} className="mr-2" size={20} />
+                        {submitStatus.message}
+                      </div>
                     </div>
-                  </div>
-                )}
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 text-xs sm:text-sm md:text-base lg:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <span className="whitespace-nowrap">
-                        Start Partnership Discussion
-                      </span>
-                      <Icon name="ArrowRight" className="ml-2 flex-shrink-0" size={16} />
-                    </>
                   )}
-                </Button>
-              </form>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 text-xs sm:text-sm md:text-base lg:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <span className="whitespace-nowrap">
+                          Start Partnership Discussion
+                        </span>
+                        <Icon name="ArrowRight" className="ml-2 flex-shrink-0" size={16} />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </Form>
             </CardContent>
           </Card>
         </div>

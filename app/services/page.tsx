@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Icon } from "@/components/ui/icon"
 import Link from "next/link"
 
-export default function ExpertisePage() {
+export default function ServicesPage() {
   const [isVisible, setIsVisible] = useState(false)
   const [selectedService, setSelectedService] = useState(0)
   const searchParams = useSearchParams()

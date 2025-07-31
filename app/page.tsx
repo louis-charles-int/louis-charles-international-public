@@ -37,7 +37,7 @@ export default function HomePage() {
       description:
         "Transform your brand presence with data-driven marketing strategies, compelling content, and targeted campaigns that deliver measurable results for UK and USA businesses.",
       cta: "Explore Marketing",
-      href: "/expertise#marketing-solutions",
+      href: "/services#marketing-solutions",
       bg: "from-slate-800 via-gray-800 to-black",
     },
     {
@@ -46,7 +46,7 @@ export default function HomePage() {
       description:
         "Streamline your operations with cutting-edge AI tools, automated workflows, and smart systems that reduce costs while boosting efficiency and accuracy.",
       cta: "Discover AI Solutions",
-      href: "/expertise#ai-automation",
+      href: "/services#ai-automation",
       bg: "from-gray-800 via-slate-800 to-black",
     },
     {
@@ -55,7 +55,7 @@ export default function HomePage() {
       description:
         "Focus on growth while our skilled administrative professionals handle your daily operations, customer communications, and business processes with precision.",
       cta: "Get Admin Support",
-      href: "/expertise#admin-support",
+      href: "/services#admin-support",
       bg: "from-black via-slate-800 to-gray-800",
     },
   ]
@@ -134,7 +134,7 @@ export default function HomePage() {
                 size="lg"
                 className="border-2 border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-full backdrop-blur-sm bg-transparent"
               >
-                <Link href="/expertise">Our Services</Link>
+                <Link href="/services">Our Services</Link>
               </Button>
             </div>
           </div>
@@ -235,7 +235,7 @@ export default function HomePage() {
               size="lg"
               className="border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-full transition-all duration-300 bg-transparent"
             >
-              <Link href="/expertise">Explore Our Services</Link>
+              <Link href="/services">Explore Our Services</Link>
             </Button>
           </div>
         </div>

@@ -8,7 +8,7 @@ export const chatQuestions: ChatQuestion[] = [
       "We offer three main services: Marketing Solutions (SEO, social media, content marketing), AI Automation (chatbots, workflow automation, predictive analytics), and Admin Support (virtual assistants, data entry, customer communication).",
     link: {
       label: "View Our Services",
-      href: "/expertise",
+      href: "/services",
     },
     followUpQuestions: ["pricing", "timeline", "industries"],
   },
@@ -66,7 +66,7 @@ export const chatQuestions: ChatQuestion[] = [
       "We implement various AI solutions including chatbots, workflow automation, predictive analytics, machine learning models, and custom AI integrations tailored to streamline your business operations.",
     link: {
       label: "Explore AI Services",
-      href: "/expertise#ai-automation",
+      href: "/services#ai-automation",
     },
     followUpQuestions: ["integration", "training", "maintenance"],
   },
@@ -77,7 +77,7 @@ export const chatQuestions: ChatQuestion[] = [
       "Our marketing solutions include brand strategy, social media campaigns, SEO & SEM, content marketing, email automation, digital advertising, performance analytics, and conversion optimization.",
     link: {
       label: "View Marketing Services",
-      href: "/expertise#marketing-solutions",
+      href: "/services#marketing-solutions",
     },
     followUpQuestions: ["results", "reporting", "strategy"],
   },
@@ -88,7 +88,7 @@ export const chatQuestions: ChatQuestion[] = [
       "We offer comprehensive admin support including inbox & calendar management, data entry, HR admin support, customer communication, research & reporting, CRM updates, and virtual assistant services.",
     link: {
       label: "Learn About Admin Support",
-      href: "/expertise#admin-support",
+        href: "/services#admin-support",
     },
     followUpQuestions: ["availability", "security", "communication"],
   },

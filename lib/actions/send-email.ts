@@ -44,18 +44,7 @@ export async function sendPartnershipEmail(formData: FormData) {
   try {
     // Check if SMTP is configured
     if (!isSmtpConfigured) {
-      console.warn("SMTP not configured. Email functionality disabled in preview/development.")
-
-      // In development/preview, just log the form data and return success
-      console.log("Partnership form submission:", {
-        name: formData.name,
-        email: formData.email,
-        company: formData.company,
-        phone: formData.phone,
-        industry: formData.industry,
-        projectType: formData.projectType,
-        message: formData.message.substring(0, 100) + "...",
-      })
+      // In development/preview, just return success without logging
 
       return {
         success: true,
@@ -130,7 +119,6 @@ export async function sendPartnershipEmail(formData: FormData) {
 
     return { success: true, data: { message: "Email sent successfully" } }
   } catch (error) {
-    console.error("SMTP email sending error:", error)
     return { success: false, error: "Failed to send email" }
   }
 }

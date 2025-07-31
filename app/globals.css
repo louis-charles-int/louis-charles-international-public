@@ -239,3 +239,37 @@
     color: rgb(255 255 255 / 0.95) !important;
   }
 }
+
+/* Mobile dropdown improvements */
+@media (max-width: 768px) {
+  /* Ensure dropdown content is properly positioned on mobile */
+  [data-radix-popper-content-wrapper] {
+    z-index: 9999 !important;
+  }
+  
+  /* Improve dropdown visibility on small screens */
+  [data-radix-select-content] {
+    max-height: 250px !important;
+    background-color: rgb(31 41 55) !important;
+    border: 1px solid rgb(75 85 99) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  /* Ensure dropdown items are properly styled on mobile */
+  [data-radix-select-item] {
+    padding: 1rem 1.25rem !important;
+    color: white !important;
+    min-height: 44px !important;
+  }
+  
+  /* Improve form field spacing on mobile */
+  .space-y-6 > * + * {
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Ensure proper spacing for error messages */
+  [data-radix-form-message] {
+    margin-top: 0.5rem !important;
+    font-size: 0.875rem !important;
+  }
+}
