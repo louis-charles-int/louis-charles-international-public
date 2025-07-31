@@ -7,7 +7,11 @@ import { Footer } from "@/components/layout/footer/footer"
 import { ChatWidget } from "@/components/chatbot/chat-widget"
 import { siteConfig } from "@/lib/data/site-config"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: {
@@ -116,6 +120,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preload critical resources */}
+        <link 
+          rel="preload" 
+          href="/images/logo-lci-120.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        <link 
+          rel="preload" 
+          href="/images/logo-lci-80.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        <link 
+          rel="dns-prefetch" 
+          href="//fonts.googleapis.com"
+        />
+        <link 
+          rel="preconnect" 
+          href="https://fonts.googleapis.com"
+        />
+        <link 
+          rel="preconnect" 
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={inter.className}>
         <Header />
         <main>{children}</main>
