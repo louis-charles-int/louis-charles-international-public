@@ -30,6 +30,8 @@ const iconComponents = {
   Linkedin: dynamic(() => import("lucide-react").then(mod => ({ default: mod.Linkedin }))),
   Twitter: dynamic(() => import("lucide-react").then(mod => ({ default: mod.Twitter }))),
   Instagram: dynamic(() => import("lucide-react").then(mod => ({ default: mod.Instagram }))),
+  Building: dynamic(() => import("lucide-react").then(mod => ({ default: mod.Building }))),
+  User: dynamic(() => import("lucide-react").then(mod => ({ default: mod.User }))),
 }
 
 interface IconProps {
