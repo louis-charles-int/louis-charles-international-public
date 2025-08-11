@@ -55,7 +55,7 @@ export const chatQuestions: ChatQuestion[] = [
       "We can typically start within 1 week after our initial consultation and agreement. Our process includes: Discovery Call (1 hour) → Strategic Assessment (1-2 weeks) → Partnership Proposal (3-5 days) → Onboarding & Launch (1 week).",
     link: {
       label: "Learn About Our Process",
-      href: "/partnership#process",
+      href: "/services#our-process",
     },
     followUpQuestions: ["onboarding", "consultation", "requirements"],
   },

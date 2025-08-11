@@ -30,7 +30,7 @@ export function Footer() {
       title: "Support",
       links: [
         { href: "/partnership#form", label: "Contact Us" },
-        { href: "/partnership#process", label: "Our Process" },
+        { href: "/services#our-process", label: "Our Process" },
         { href: "/partnership#form", label: "Get Help" },
         { href: "/about", label: "About Us" },
       ],
@@ -38,9 +38,9 @@ export function Footer() {
   ]
 
   const socialLinks = [
-    { name: "Linkedin", href: siteConfig.links.linkedin },
-    { name: "Twitter", href: siteConfig.links.twitter },
-    { name: "Instagram", href: siteConfig.links.instagram },
+    { name: "Linkedin", href: siteConfig.links.linkedin, icon: "Linkedin" },
+    { name: "Twitter", href: siteConfig.links.twitter, icon: "Twitter" },
+    { name: "Instagram", href: siteConfig.links.instagram, icon: "Instagram" },
   ]
 
   return (
@@ -65,7 +65,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon name={social.name as any} size={16} />
+                  <Icon name={social.icon as any} size={16} />
                 </a>
               ))}
             </div>

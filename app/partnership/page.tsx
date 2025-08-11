@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Icon } from "@/components/ui/icon"
+import { SectionLayout } from "@/components/ui/section-layout"
+import { GradientButton } from "@/components/ui/gradient-button"
 import {
   Select,
   SelectContent,
@@ -77,13 +79,6 @@ export default function PartnershipPage() {
             element.scrollIntoView({ behavior: "smooth", block: "start" })
           }
         }, 100)
-      } else if (hash === "process") {
-        setTimeout(() => {
-          const element = document.getElementById("process")
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" })
-          }
-        }, 100)
       }
     }
 
@@ -143,32 +138,7 @@ export default function PartnershipPage() {
     },
   ]
 
-  const processSteps = [
-    {
-      step: "01",
-      title: "Discovery Call",
-      description: "Free 60-minute consultation to understand your business needs and objectives",
-      duration: "1 hour",
-    },
-    {
-      step: "02",
-      title: "Strategic Assessment",
-      description: "Comprehensive analysis of your current situation and growth opportunities",
-      duration: "1-2 weeks",
-    },
-    {
-      step: "03",
-      title: "Partnership Proposal",
-      description: "Customized partnership plan with clear deliverables and timelines",
-      duration: "3-5 days",
-    },
-    {
-      step: "04",
-      title: "Onboarding & Launch",
-      description: "Seamless integration with your team and project kickoff",
-      duration: "1 week",
-    },
-  ]
+
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
@@ -213,110 +183,76 @@ export default function PartnershipPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-slate-900 text-white">
       {/* Hero Section */}
-      <section className="pt-48 sm:pt-52 md:pt-56 lg:pt-60 pb-16 sm:pb-20 bg-gradient-to-br from-gray-900 via-black to-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/50 via-black/50 to-slate-900/50" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-gray-800 to-black opacity-90" />
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="relative z-10 text-center container-medium content-padding">
           <div
-            className={`text-center transform transition-all duration-1000 ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            className={`transform transition-all duration-1000 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
             }`}
           >
-            <Badge className="mb-6 bg-gray-800/50 text-amber-300 border-amber-400/30 px-6 py-2 text-lg">
+            <Badge className="mb-6 badge-standard px-6 py-2 text-lg">
               <Icon name="Users" className="w-5 h-5 mr-2" />
               Partnership Program
             </Badge>
-            <h1 className="text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-amber-200 to-yellow-300 bg-clip-text text-transparent">
+            <h1 className="text-hero-title font-bold mb-6 bg-gradient-to-r from-white via-amber-200 to-yellow-300 bg-clip-text text-transparent leading-tight">
               Let's Build
               <br />
               <span className="text-amber-400">Something Great</span>
             </h1>
-            <p className="text-xl lg:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-              Partner with us to transform your business with innovative solutions, expert support, and dedicated
-              service that drives real results.
+            <p className="text-hero-description text-white/80 max-w-4xl mx-auto leading-relaxed px-4">
+              Partner with us to transform your business with innovative solutions and expert support that drives real results.
             </p>
           </div>
         </div>
       </section>
 
       {/* Why Partner With Us */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 text-white">Why Partner with Us?</h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Our experienced team acts as a seamless extension of your organisation, delivering high-quality,
-              efficient, and discreet support across a range of functions.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyPartnerWithUs.map((benefit, index) => (
-              <Card
-                key={index}
-                className="bg-gradient-to-br from-gray-900 to-black border-amber-400/30 hover:border-amber-400/50 transition-all duration-500 hover:scale-105 group"
-              >
-                <CardContent className="p-8 text-center">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-br ${benefit.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  >
-                    <Icon name={benefit.icon as any} className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
-                  <p className="text-white/70 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      <SectionLayout background="dark">
+        <div className="text-center mb-16">
+          <h2 className="text-section-title font-bold mb-6 text-white">Why Partner with Us?</h2>
+          <p className="text-section-description text-white/70 max-w-3xl mx-auto px-4">
+            Our experienced team acts as a seamless extension of your organisation, delivering high-quality and efficient support.
+          </p>
         </div>
-      </section>
 
-      {/* Our Process Section */}
-      <section id="process" className="py-20 bg-gradient-to-r from-gray-900/20 to-slate-900/20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 text-white">Our Process</h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              A proven 4-step process to ensure successful collaboration from day one
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {processSteps.map((step, index) => (
-              <div key={index} className="relative">
-                <Card className="bg-gray-900/50 border-gray-700/50 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-2">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-xl font-bold">
-                      {step.step}
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
-                    <p className="text-white/70 mb-4">{step.description}</p>
-                    <div className="text-amber-400 font-semibold text-sm">{step.duration}</div>
-                  </CardContent>
-                </Card>
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                    <Icon name="ArrowRight" className="text-amber-400" size={24} />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {whyPartnerWithUs.map((benefit, index) => (
+            <Card
+              key={index}
+              className="bg-gradient-to-br from-slate-900 via-gray-900 to-black border-yellow-400/30 hover:border-yellow-400/50 transition-all duration-500 hover:scale-105 group"
+            >
+              <CardContent className="p-8 text-center">
+                <div
+                  className={`w-16 h-16 bg-gradient-to-r ${benefit.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <Icon name={benefit.icon as any} className="text-white" size={28} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{benefit.title}</h3>
+                <p className="text-white/70 leading-relaxed">{benefit.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </section>
+      </SectionLayout>
+
+
 
       {/* Partnership Form Section */}
-      <section id="form" className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-4xl mx-auto px-6">
+      <SectionLayout id="form" background="dark">
+        <div className="container-small">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 text-white">Start Partnership</h2>
-            <p className="text-xl text-white/70">
+            <h2 className="text-section-title font-bold mb-6 text-white">Start Partnership</h2>
+            <p className="text-section-description text-white/70 px-4">
               Tell us about your vision and let's explore how we can achieve it together
             </p>
           </div>
 
-          <Card className="bg-gradient-to-br from-gray-900 to-black border-amber-400/30">
+          <Card className="bg-gradient-to-br from-slate-900 via-gray-900 to-black border-yellow-400/30">
             <CardContent className="p-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -330,7 +266,7 @@ export default function PartnershipPage() {
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400"
                               placeholder="Your full name"
                               disabled={isSubmitting}
                             />
@@ -339,25 +275,25 @@ export default function PartnershipPage() {
                         </FormItem>
                       )}
                     />
-                                         <FormField
-                       control={form.control}
-                       name="email"
-                       render={({ field }) => (
-                         <FormItem>
-                           <FormLabel className="text-white/80">Email Address *</FormLabel>
-                           <FormControl>
-                             <Input
-                               {...field}
-                               type="text"
-                               className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
-                               placeholder="your@email.com"
-                               disabled={isSubmitting}
-                             />
-                           </FormControl>
-                           <FormMessage className="text-red-400" />
-                         </FormItem>
-                       )}
-                     />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Email Address *</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="text"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400"
+                              placeholder="your@email.com"
+                              disabled={isSubmitting}
+                            />
+                          </FormControl>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -370,7 +306,7 @@ export default function PartnershipPage() {
                           <FormControl>
                             <Input
                               {...field}
-                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400"
                               placeholder="Your company name"
                               disabled={isSubmitting}
                             />
@@ -389,7 +325,7 @@ export default function PartnershipPage() {
                             <Input
                               {...field}
                               type="tel"
-                              className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                              className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400"
                               placeholder="+1 (555) 123-4567"
                               disabled={isSubmitting}
                             />
@@ -401,54 +337,57 @@ export default function PartnershipPage() {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
-                                         <FormField
-                       control={form.control}
-                       name="industry"
-                       render={({ field }) => (
-                         <FormItem>
-                           <FormLabel className="text-white/80">Industry *</FormLabel>
-                           <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
-                             <FormControl>
-                               <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
-                                 <SelectValue placeholder="Select your industry" />
-                               </SelectTrigger>
-                             </FormControl>
-                             <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
-                               <SelectItem value="technology">Technology</SelectItem>
-                               <SelectItem value="healthcare">Healthcare</SelectItem>
-                               <SelectItem value="finance">Finance</SelectItem>
-                               <SelectItem value="retail">Retail</SelectItem>
-                               <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                               <SelectItem value="other">Other</SelectItem>
-                             </SelectContent>
-                           </Select>
-                           <FormMessage className="text-red-400" />
-                         </FormItem>
-                       )}
-                     />
-                                         <FormField
-                       control={form.control}
-                       name="projectType"
-                       render={({ field }) => (
-                         <FormItem>
-                           <FormLabel className="text-white/80">Service Interest *</FormLabel>
-                           <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
-                             <FormControl>
-                               <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400 min-h-[44px]">
-                                 <SelectValue placeholder="Select service type" />
-                               </SelectTrigger>
-                             </FormControl>
-                             <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
-                               <SelectItem value="marketing-solutions">Marketing Solutions</SelectItem>
-                               <SelectItem value="ai-automation">AI Automation</SelectItem>
-                               <SelectItem value="admin-support">Admin Support</SelectItem>
-                               <SelectItem value="all-business-services">All business services</SelectItem>
-                             </SelectContent>
-                           </Select>
-                           <FormMessage className="text-red-400" />
-                         </FormItem>
-                       )}
-                     />
+                    <FormField
+                      control={form.control}
+                      name="industry"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Industry *</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
+                            <FormControl>
+                              <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400 min-h-[44px]">
+                                <SelectValue placeholder="Select your industry" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
+                              <SelectItem value="technology">Technology</SelectItem>
+                              <SelectItem value="healthcare">Healthcare</SelectItem>
+                              <SelectItem value="finance">Finance</SelectItem>
+                              <SelectItem value="education">Education</SelectItem>
+                              <SelectItem value="ecommerce">E-commerce</SelectItem>
+                              <SelectItem value="consulting">Consulting</SelectItem>
+                              <SelectItem value="retail">Retail</SelectItem>
+                              <SelectItem value="manufacturing">Manufacturing</SelectItem>
+                              <SelectItem value="other">Other</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="projectType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80">Service Interest *</FormLabel>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
+                            <FormControl>
+                              <SelectTrigger className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400 min-h-[44px]">
+                                <SelectValue placeholder="Select service type" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-gray-800 border-gray-600 text-white max-h-60">
+                              <SelectItem value="marketing-solutions">Marketing Solutions</SelectItem>
+                              <SelectItem value="ai-automation">AI Automation</SelectItem>
+                              <SelectItem value="admin-support">Admin Support</SelectItem>
+                              <SelectItem value="all-business-services">All business services</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-red-400" />
+                        </FormItem>
+                      )}
+                    />
                   </div>
 
                   <FormField
@@ -461,7 +400,7 @@ export default function PartnershipPage() {
                           <Textarea
                             {...field}
                             rows={6}
-                            className="bg-gray-800 border-gray-600 text-white focus:border-amber-400 focus:ring-amber-400"
+                            className="bg-gray-800 border-gray-600 text-white focus:border-yellow-400 focus:ring-yellow-400"
                             placeholder="Tell us about your project, goals, and how we can help you achieve them..."
                             disabled={isSubmitting}
                           />
@@ -491,7 +430,7 @@ export default function PartnershipPage() {
                     type="submit"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-4 text-xs sm:text-sm md:text-base lg:text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold btn-primary-size btn-text-size rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -512,7 +451,7 @@ export default function PartnershipPage() {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </SectionLayout>
     </div>
   )
 }
